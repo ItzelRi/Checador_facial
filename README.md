@@ -39,49 +39,46 @@ checador/
 
 ## Diagrama de Base de Datos
 
-┌──────────────────────────────────────────────────────────────────────┐
-│                              DATABASE                                │
-│──────────────────────────────────────────────────────────────────────│
-│   ┌──────────────────────┐                ┌──────────────────────┐   │
-│   │       SCHEDULES      │                │        USERS         │   │
-│   ├──────────────────────┤                ├──────────────────────┤   │
-│   │ id (PK)              │◄───────────────│ schedule_id (FK)     │   │
-│   │ name                 │                │ id (PK)              │   │
-│   │ check_in             │                │ name                 │   │
-│   │ check_out            │                │ lastname             │   │
-│   │ worked_days          │                │ genre                │   │
-│   │ late_minutes         │                │ occupation           │   │
-│   │ created_at           │                │ area                 │   │
-│   └──────────────────────┘                │ pin                  │   │
-│                                           │ role (Enum)          │   │
-│                                           │ face_img_path        │   │
-│                                           │ active               │   │
-│                                           │ created_at           │   │
-│                                           │ updated_at           │   │
-│                                           └───────────┬──────────┘   │
-│                                                       │              │
-│                                  user_id (FK)         │              │
-│                                                       ▼              │
-│   ┌──────────────────────┐                ┌──────────────────────┐   │
-│   │        CHECKS        │                │     PERMISSIONS      │   │
-│   ├──────────────────────┤                ├──────────────────────┤   │
-│   │ id (PK)              │                │ id (PK)              │   │
-│   │ user_id (FK)         │◄───────────────│ user_id (FK)         │   │
-│   │ date                 │                │ start_date           │   │
-│   │ check_in             │                │ end_date             │   │
-│   │ check_out            │                │ reason               │   │
-│   │ status               │                │ status               │   │
-│   └──────────────────────┘                │ created_at           │   │
-│                                           │ updated_at           │   │
-│                                           └──────────────────────┘   │
-│                                                                      │
-│                           RELACIONES                                 │
-│                                                                      │
-│              SCHEDULES 1 ─────────── N USERS                         │
-│              USERS     1 ─────────── N CHECKS                        │
-│              USERS     1 ─────────── N PERMISSIONS                   │
-│                                                                      │
-└──────────────────────────────────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────┐
+│ DATABASE │
+├─────────────────────────────────────────────────────┤
+│ │
+│ ┌──────────────┐ ┌──────────────┐ │
+│ │ SCHEDULES │ │ USERS │ │
+│ ├──────────────┤ ├──────────────┤ │
+│ │ id (PK) │◄───│ schedule_id │ │
+│ │ name │ │ id (PK) │ │
+│ │ check_in │ │ name │ │
+│ │ check_out │ │ lastname │ │
+│ │ worked_days │ │ genre │ │
+│ │ late_minutes │ │ occupation │ │
+│ │ created_at │ │ area │ │
+│ └──────────────┘ │ pin │ │
+│ │ role (Enum) │ │
+│ ┌──────────────┐ │ face_img_path│ │
+│ │ CHECKS │ │ active │ │
+│ ├──────────────┤ │ created_at │ │
+│ │ id (PK) │ │ updated_at │ │
+│ │ user_id (FK) │◄───└──────────────┘ │
+│ │ date │ │
+│ │ check_in │ ┌──────────────────┐ │
+│ │ check_out │ │ PERMISSIONS │ │
+│ │ status │ ├──────────────────┤ │
+│ └──────────────┘ │ id (PK) │ │
+│ │ user_id (FK) │◄──┐ │
+│ │ start_date │ │ │
+│ │ end_date │ │ │
+│ │ reason │ │ │
+│ │ status │ │ │
+│ │ created_at │ │ │
+│ │ updated_at │ │ │
+│ └──────────────────┘ │ │
+│ │ │
+│ RELACIONES: │ │
+│ users 1 ──── N checks │ │
+│ users 1 ──── 1 schedule │ │
+│ users 1 ──── N permissions │ │
+└─────────────────────────────────────────────────────┘
 
 ---
 
