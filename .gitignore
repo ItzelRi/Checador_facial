@@ -1,0 +1,6 @@
+# Fotos de usuarios (datos sensibles)
+backend_python/uploads/faces/*
+!backend_python/uploads/faces/.gitkeep
+
+# Archivos temporales
+backend_python/uploads/temp/*
